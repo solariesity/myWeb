@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的网页</title>
+    <!-- 引用外部CSS文件 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <label id="debug"></label>
+    <br>
+    <input type="text" id="index_path">
+    <br>
+    <button id="list">
+        按下按钮之后会显示根目录的文件
+    </button>
+    <p id="file_content"></p>
+    <script>
+        function show_list(data){
+            const fileContent = document.getElementById("file_content");
+            //fileContent.innerHTML = '';
+            for (const item of data){
+                if (!item.is_dir){
+                    const element = document.createElement('div');
+                    element.textContent = item.file_name;
+                    fileContent.appendChild(element);
+
+                    //fileContent.innerHTML += item.file_name;
+                }
+            }
+        }
+        // 在点下按钮之后异步进行
+        document.getElementById("list").addEventListener("click", async function () {
+            try {
+                const index_path = document.getElementById("index_path").value;
+                const file_content = document.getElementById("file_content");
+
+                // 输入和没输入的情况下对url进行赋值
+                var url;
+                if(index_path){
+                    url = `list_file.php?path=${encodeURIComponent(index_path)}`;
+                }
+                else{
+                    url = `list_file.php`;
+                }
+
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error("网络响应不正常");
+                }
+                const data = await response.json();
+
+                file_content.innerHTML = `${JSON.stringify(data)}`;
+                show_list(data);
+            }
+            catch (error) {
+                file_content.innerHTML = `error:${error}`;
+            }
+        });
+
+        //file_content.innerHTML = `${JSON.stringify(data)}`;
+        
+    </script>
+</body>
+
+</html>
