@@ -1,108 +1,186 @@
-/* 基础重置 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* 根元素和页面基础样式 */
+/* ==================== */
+/* 全局重置与基础样式 */
+/* ==================== */
+
+/**
+ * 通配选择器 (*) 重置所有元素的默认样式
+ * - margin: 0  移除浏览器默认的外边距
+ * - padding: 0 移除浏览器默认的内边距
+ * - box-sizing: border-box 让元素的宽度包含padding和border（更直观的盒模型）
+ */
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/**
+ * 根元素(html)基础设置
+ * - font-size: 16px 设置基准字体大小（1rem = 16px）
+ * - line-height: 1.5 设置默认行高为字体大小的1.5倍
+ * - scroll-behavior: smooth 让页面滚动更平滑
+ */
+html {
+  font-size: 16px;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+/**
+ * 文档主体(body)样式
+ * - font-family: 设置默认字体栈，优先使用系统字体
+ * - background-color: 浅灰色背景
+ * - color: 深灰色文字
+ * - min-height: 确保页面至少撑满整个视口高度
+ */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  min-height: 100vh;
+}
+
+/* ==================== */
+/* 排版样式 */
+/* ==================== */
+
+/**
+ * 标题样式组
+ * - margin-bottom: 统一设置下边距
+ * - font-weight: 中等粗细
+ * - line-height: 标题行高比正文稍小
+ */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+/* 各级标题的字体大小（rem单位基于根字体大小） */
+h1 { font-size: 2.5rem; }   /* 40px (16 * 2.5) */
+h2 { font-size: 2rem; }     /* 32px */
+h3 { font-size: 1.75rem; }  /* 28px */
+h4 { font-size: 1.5rem; }   /* 24px */
+
+/**
+ * 段落样式
+ * - margin-bottom: 段落之间保持间距
+ * - max-width: 优化行长，提高可读性
+ */
+p {
+  margin-bottom: 1rem;
+  max-width: 65ch; /* 大约65个字符宽度 */
+}
+
+/* ==================== */
+/* 链接样式 */
+/* ==================== */
+
+/**
+ * 基础链接样式
+ * - color: 品牌蓝色
+ * - text-decoration: 默认无下划线
+ * - transition: 颜色变化添加0.3秒过渡效果
+ */
+a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* 链接悬停状态 */
+a:hover {
+  color: #004499;
+  text-decoration: underline;
+}
+
+/* ==================== */
+/* 按钮样式 */
+/* ==================== */
+
+/**
+ * 基础按钮样式
+ * - display: inline-block 允许设置宽度/高度
+ * - padding: 舒适的点击区域
+ * - border-radius: 轻微圆角
+ * - cursor: 指针样式
+ * - transition: 背景色变化动画
+ */
+button, .button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* 按钮悬停状态 */
+button:hover, .button:hover {
+  background-color: #004499;
+}
+
+/* 禁用状态按钮 */
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* ==================== */
+/* 布局样式 */
+/* ==================== */
+
+/**
+ * 响应式容器
+ * - width: 默认100%宽度
+ * - max-width: 大屏幕上限制最大宽度
+ * - margin: 0 auto 水平居中
+ * - padding: 左右内边距防止内容贴边
+ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/**
+ * 带边框的盒子
+ * - border: 1px实线边框
+ * - border-radius: 圆角
+ * - padding: 内边距
+ * - margin-bottom: 下边距分隔多个盒子
+ * - background-color: 白色背景
+ */
+.box {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: white;
+}
+
+/* ==================== */
+/* 响应式设计 */
+/* ==================== */
+
+/**
+ * 媒体查询：屏幕宽度小于768px时的样式调整
+ * - 调整根字体大小
+ * - 缩小容器内边距
+ * - 调整标题大小
+ */
+@media (max-width: 768px) {
   html {
-    font-size: 16px;
-    line-height: 1.5;
-    scroll-behavior: smooth;
+    font-size: 14px;
   }
   
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
-    background-color: #fff;
-    min-height: 100vh;
-  }
-  
-  /* 标题样式 */
-  h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-  }
-  
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 2rem; }
-  h3 { font-size: 1.75rem; }
-  h4 { font-size: 1.5rem; }
-  h5 { font-size: 1.25rem; }
-  h6 { font-size: 1rem; }
-  
-  /* 段落和文本 */
-  p {
-    margin-bottom: 1rem;
-  }
-  
-  a {
-    color: #0066cc;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: #004499;
-    text-decoration: underline;
-  }
-  
-  /* 列表 */
-  ul, ol {
-    margin-bottom: 1rem;
-    padding-left: 2rem;
-  }
-  
-  li {
-    margin-bottom: 0.5rem;
-  }
-  
-  /* 表单元素 */
-  input, button, select, textarea {
-    font-family: inherit;
-    font-size: inherit;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  button {
-    cursor: pointer;
-    background-color: #f0f0f0;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  /* 布局类 */
   .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
   
-  /* 实用类 */
-  .text-center { text-align: center; }
-  .text-right { text-align: right; }
-  .mt-1 { margin-top: 0.5rem; }
-  .mt-2 { margin-top: 1rem; }
-  .mb-1 { margin-bottom: 0.5rem; }
-  .mb-2 { margin-bottom: 1rem; }
-  .p-1 { padding: 0.5rem; }
-  .p-2 { padding: 1rem; }
-  
-  /* 响应式设计 */
-  @media (max-width: 768px) {
-    html {
-      font-size: 14px;
-    }
-    
-    .container {
-      padding: 0 0.5rem;
-    }
-  }
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+}

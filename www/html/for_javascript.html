@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>learnding javascript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div class="box">
+        <button id="show_alert" onclick="show_alert('happy')">点击这个按钮弹窗,并打印“show: happy”</button>
+    </div>
+    
+    <div class="box">
+        <p id="write_date">点击之前不显示时间，点击之后显示时间</p>
+        <button onclick="write_date()">点击之后上面这一段话显示时间</button>
+    </div>
+</body>
+<script>
+    function show_alert(s){
+        alert(`show: ${s}`);
+    }
+
+    function write_date(){
+        document.getElementById("write_date").innerHTML=Date();
+    }
+</script>
