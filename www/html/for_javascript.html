@@ -1,25 +1,100 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <title>learnding javascript</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
     <div class="box">
+        <p>链接示范</p>
+        <a href="http://www.hao123.com">hao123.com</a>
+    </div>
+
+    <div class="box">
+        <p>function的简单使用</p>
         <button id="show_alert" onclick="show_alert('happy')">点击这个按钮弹窗,并打印“show: happy”</button>
     </div>
-    
+
     <div class="box">
+        <p>使用 document.getElementById("write_date").innerHTML=Date(); 修改元素的内容</p>
         <p id="write_date">点击之前不显示时间，点击之后显示时间</p>
         <button onclick="write_date()">点击之后上面这一段话显示时间</button>
     </div>
+
+    <div class="box">
+        <p>onmouseover示范</p>
+        <button id="change_content" onmouseover="change_content()">将鼠标放在这里就会改变内容：1</button>
+    </div>
+
+    <div class="box">
+        <p>字符串</p>
+        <p id="string_content"></p>
+        <p id="string_length"></p>
+        <script>
+            var a = "Hello World";
+            document.getElementById("string_content").innerHTML = "字符串为：" + a;
+            document.getElementById("string_length").innerHTML = "字符串长度为：" + a.length;
+        </script>
+    </div>
+
+    <div class="box">
+        <p>输入一个数字x，要求1&ltx&lt6</p>
+        <input id="input_num" type="text">haha
+        <button onclick="num_check()">输入</button>
+        <p id="output_content">输出</p>
+        <script>
+            function num_check() {
+                var input = document.getElementById("input_num").value;
+                var output = document.getElementById("output_content");
+                try {
+                    if (input == '') throw "空"
+                    if (isNaN(input)) {
+                        // b.innerHTML = a + "不是数字";
+                        throw input + "不是数字"
+                    } else {
+                        // b.innerHTML = a + "是数字";
+                        throw input + "是数字"
+                    }
+                }
+                catch(e){
+                    output.innerHTML = e
+                }
+
+            }
+        </script>
+    </div>
+
+    <div class="box">
+        <p>debug使用</p>
+        <p id="debug_test1">a</p>
+        <p id="debug_test2">b</p>
+        <script>
+            var a = "Hello World";
+            document.getElementById("debug_test1").innerHTML = "1";
+            document.getElementById("debug_test2").innerHTML = "2";
+            debugger;
+            document.getElementById("debug_test1").innerHTML = "3";
+        </script>
+    </div>
 </body>
 <script>
-    function show_alert(s){
+    function show_alert(s) {
         alert(`show: ${s}`);
     }
 
-    function write_date(){
-        document.getElementById("write_date").innerHTML=Date();
+    function write_date() {
+        document.getElementById("write_date").innerHTML = Date();
+    }
+
+    function change_content() {
+        var content = document.getElementById("change_content")
+        if (content.innerHTML == "将鼠标放在这里就会改变内容：1") {
+            content.innerHTML = "将鼠标放在这里就会改变内容：2";
+        }
+        else {
+            content.innerHTML = "将鼠标放在这里就会改变内容：1";
+        }
     }
 </script>
