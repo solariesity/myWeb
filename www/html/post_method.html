@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>post_html</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="box">
+        <p>POST的一个测试</p>
+        <input type="text" id="name_input">
+        <button onclick="post_test('happy')">按钮</button>
+        <p id="post"></p>
+        <p id="debug"></p>
+    </div>
+</body>
+<script>
+    async function post_test(params) {
+        var name1 = document.getElementById("name_input").value;
+        document.getElementById("debug").innerHTML = name1;
+        data = {name: name1};
+
+        const response = await fetch("../php/post_method.php",{
+            method : "POST",
+            headers : {
+                "Content-Type":"application/json"
+            },
+            body : JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result["name"]);
+        document.getElementById("post").innerHTML = `收到的消息内容为${JSON.stringify(result)}`;
+    }
+</script>

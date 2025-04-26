@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>post_method2</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="box">
+        <p>post_method2</p>
+        <button onclick="">post</button>
+        <p id="demo">
+    </div>
+
+    <script>
+        async function post_test(params) {
+            data = { name: "Jack" };
+
+            const response = await fetch("../php/post_method2.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data);
+            });
+
+            result = response.json()
+            document.getElementById("demo").innerHTML = `接收到的消息如下：${result}`;
+        }
+    </script>
+</body>
