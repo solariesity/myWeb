@@ -4,13 +4,21 @@
     <meta charset="utf-8">
     <title>list_files</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .box-1{
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            margin: 100px;
+        }
+    </style>
 </head>
 
-<body>
-    <h1>下面展示文件</h1>
+<body class="box-1">
+    <h1>文件</h1>
     <!-- <button onclick="get_files('')">主页</button> -->
     <div id="path">
-        <button onclick="get_files('')">主页</button>
+        <button onclick="get_files('')">home</button>
     </div>
     <p id="files"></p>
     <div id="list"></div>
@@ -40,7 +48,7 @@
             const path_container = document.getElementById("path");
             path_container.innerHTML = '';
             const home = document.createElement("button");
-            home.textContent = "主页";
+            home.textContent = "home";
             home.onclick = () => get_files('');
             path_container.appendChild(home);
 

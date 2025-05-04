@@ -8,7 +8,7 @@
  * - padding: 0 移除浏览器默认的内边距
  * - box-sizing: border-box 让元素的宽度包含padding和border（更直观的盒模型）
  */
- * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -50,17 +50,38 @@ body {
  * - font-weight: 中等粗细
  * - line-height: 标题行高比正文稍小
  */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1.2;
 }
 
 /* 各级标题的字体大小（rem单位基于根字体大小） */
-h1 { font-size: 2.5rem; }   /* 40px (16 * 2.5) */
-h2 { font-size: 2rem; }     /* 32px */
-h3 { font-size: 1.75rem; }  /* 28px */
-h4 { font-size: 1.5rem; }   /* 24px */
+h1 {
+  font-size: 2.5rem;
+}
+
+/* 40px (16 * 2.5) */
+h2 {
+  font-size: 2rem;
+}
+
+/* 32px */
+h3 {
+  font-size: 1.75rem;
+}
+
+/* 28px */
+h4 {
+  font-size: 1.5rem;
+}
+
+/* 24px */
 
 /**
  * 段落样式
@@ -68,8 +89,7 @@ h4 { font-size: 1.5rem; }   /* 24px */
  * - max-width: 优化行长，提高可读性
  */
 p {
-  margin-bottom: 1rem;
-  /* max-width: 65ch; 大约65个字符宽度 */
+  margin: 2px;
 }
 
 /* ==================== */
@@ -106,19 +126,22 @@ a:hover {
  * - cursor: 指针样式
  * - transition: 背景色变化动画
  */
-button, .button {
+button,
+.button {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #0066cc;
+  background-color: #9c61d0;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 2px;
 }
 
 /* 按钮悬停状态 */
-button:hover, .button:hover {
+button:hover,
+.button:hover {
   background-color: #004499;
 }
 
@@ -177,11 +200,16 @@ button:disabled {
   html {
     font-size: 14px;
   }
-  
+
   .container {
     padding: 0 0.5rem;
   }
-  
-  h1 { font-size: 2rem; }
-  h2 { font-size: 1.75rem; }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
 }
