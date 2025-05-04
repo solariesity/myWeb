@@ -38,8 +38,6 @@
             })
 
             const result = await response.json();
-            // document.getElementById("files").innerHTML = JSON.stringify(result);
-            // document.getElementById("files").innerHTML = result[0]["name"];
 
             list_files(result);
         }
@@ -88,9 +86,10 @@
                     li.appendChild(button);
                 }
                 else {
-                    const p = document.createElement("p");
-                    p.textContent = item["name"];
-                    li.appendChild(p);
+                    const a = document.createElement("a");
+                    a.textContent = item["name"];
+                    a.href = `../show_files/show_files.html?file=${item["real_path"]}`;
+                    li.appendChild(a);
                 }
 
                 list.appendChild(li);

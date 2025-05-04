@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <title>我的网页</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>show_files</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
+
 <body>
-    <pre id="content"></pre>
+    <div>
+        <h1 id="file_name">name of file</h1>
+    </div>
+
+    <div id="content">加载中...</div>
     <script>
-        fetch('../document/1.md')
-            .then(response => response.text())
-            .then(text => document.getElementById('content').textContent = text)
-            .catch(error => console.error('Error loading 1.md:', error));
+        // 获取当前URL的查询参数
+        const urlParams = new URLSearchParams(window.location.search);
+        var file_name = urlParams.get('file'); // 返回 "happy"
+
+        if (file_name === null) file_name = '1.md';
+        document.getElementById('file_name').innerHTML = file_name;
+        const file_path = "../document/" + file_name;
+        // alert(aValue);
+
+        marked.setOptions({ breaks: true }); // 启用换行支持
+        fetch(file_path)
+            .then(response => {
+                if (!response.ok) throw new Error(`HTTP错误: ${response.status}`);
+                return response.text();
+            })
+            .then(text => {
+                const cleanedText = text.replace(/^[\u200B\uFEFF]/, ""); // 清理特殊字符
+                document.getElementById('content').innerHTML = marked.parse(cleanedText);
+            })
+            .catch(error => {
+                console.error("加载失败:", error);
+                document.getElementById('content').innerHTML = `渲染失败: ${error.message}`;
+            });
     </script>
 </body>
+
 </html>
