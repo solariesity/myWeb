@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>我的网页</title>
-    <!-- 引用外部CSS文件 -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <div class="container">
+    <div class="box">
         <h1>欢迎来到我的网站</h1>
         <h2>下面是我写的一些html代码</h2>
-        <a href="html/test.html">test.html</a>
+        <!-- <a href="html/test.html">test.html</a>
         <br>
         <a href="html/list_file.html">list_file.html</a>
         <br>
@@ -22,6 +21,49 @@
         <a href="html/post_method.html">post_method.html</a>
         <br>
         <a href="html/post_method.html">post_method2.html</a>
+        <br>
+        <a href="php/for_php.php">for_php.php</a>
+        <br>
+        <a href="index2.html">index2.html</a> -->
     </div>
+    <div class="box" id="urls">
+
+    </div>
+
+    <script>
+        data = {
+            site: [
+                { name: "test.html", url: "html/test.html" },
+                { name: "list_file.html", url: "html/list_file.html" },
+                { name: "for_javascript.html", url: "html/for_javascript.html" },
+                { name: "for_html.html", url: "html/for_html.html" },
+                { name: "post_method.html", url: "html/post_method.html" },
+                { name: "post_method2.html", url: "html/post_method2.html" },
+                { name: "for_php.php", url: "php/for_php.php" },
+                { name: "index2.html", url: "index2.html" },
+                { name: "list_dir.php", url: "list_files/list_dir.php" },
+                { name: "set_json.php", url: "list_files/set_json.php" },
+                { name: "list_files.html", url: "list_files/list_files.html" }
+            ]
+        }
+
+        function urls_list(data) {
+            const container = document.getElementById("urls");
+            const list = document.createElement("ul");
+
+            data.site.forEach(element => {
+                const li = document.createElement("li");
+                const a = document.createElement("a");
+                a.href = element.url;
+                a.textContent = element.name;
+
+                li.appendChild(a);
+                list.appendChild(li);
+            });
+
+            container.appendChild(list);
+        }
+
+        urls_list(data);
+    </script>
 </body>
-</html>

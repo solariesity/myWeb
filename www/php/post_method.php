@@ -1,9 +1,8 @@
 <?php
-    header("Content-Type:application/json");
+header("Content-Type:application/json");
 
-    $json = file_get_contents("php://input");
+$json = file_get_contents("php://input");
 
-    $data = json_decode($json, true);
+$data = json_decode($json, true);
 
-    echo json_encode($data);
-?>
+echo json_encode($data);

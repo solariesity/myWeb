@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <title>list_files</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <h1>下面展示文件</h1>
+    <!-- <button onclick="get_files('')">主页</button> -->
+    <div id="path">
+        <button onclick="get_files('')">主页</button>
+    </div>
+    <p id="files"></p>
+    <div id="list"></div>
+
+    <script>
+        async function get_files(path) {
+            print_path(path);
+            const data = { "path": path };
+
+            // alert(JSON.stringify(data));
+            const response = await fetch("list_files.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+
+            const result = await response.json();
+            // document.getElementById("files").innerHTML = JSON.stringify(result);
+            // document.getElementById("files").innerHTML = result[0]["name"];
+
+            list_files(result);
+        }
+
+        function print_path(path) {
+            const path_container = document.getElementById("path");
+            path_container.innerHTML = '';
+            const home = document.createElement("button");
+            home.textContent = "主页";
+            home.onclick = () => get_files('');
+            path_container.appendChild(home);
+
+            const path_name = path.split('/');
+            const path_list = [];
+            var temp = '';
+            path_name.forEach(element => {
+                if (element != '') {
+                    temp = temp + "/" + element;
+
+                    const button = document.createElement("button");
+                    button.textContent = element;
+                    const t = temp;
+                    button.onclick = () => {
+                        get_files(t);
+                    }
+                    path_container.appendChild(button);
+                }
+            });
+        }
+
+        function list_files(data) {
+
+            const container = document.getElementById("list");
+            container.innerHTML = '';
+            const list = document.createElement("ul");
+
+            data.forEach(item => {
+                const li = document.createElement("li");
+
+                if (item["is_dir"]) {
+                    const button = document.createElement("button");
+                    button.textContent = item["name"];
+                    button.onclick = () => {
+                        get_files(item["real_path"]);
+                    }
+                    li.appendChild(button);
+                }
+                else {
+                    const p = document.createElement("p");
+                    p.textContent = item["name"];
+                    li.appendChild(p);
+                }
+
+                list.appendChild(li);
+            });
+
+            container.appendChild(list);
+        }
+    </script>
+</body>
